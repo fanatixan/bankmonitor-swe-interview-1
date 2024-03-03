@@ -42,13 +42,13 @@ the new code should work with existing clients.
     - ✅ Introduce Snyk scanning
 - ✅ Fix reported warnings and errors
 - ✅ Utilize Lombok
-- ⚠ Utilize Jackson
+- ✅ Utilize Jackson
 - ⚠ Separate endpoints
 - ⚠ Introduce hexagonal architecture
     - ⚠ Extract business logic from controller
     - ⚠ Extract database adapter
     - ⚠ Separate data classes for different "layers"
-- ⚠ Optimize DB performance
+- 🚧 Optimize DB performance
 - ⚠ Fix DB config
 - ⚠ Optimize logging
 - ⚠ Externalize configuration

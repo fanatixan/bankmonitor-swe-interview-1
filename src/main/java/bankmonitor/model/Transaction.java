@@ -11,7 +11,6 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
-import org.json.JSONObject;
 
 import java.time.LocalDateTime;
 
@@ -21,9 +20,6 @@ import java.time.LocalDateTime;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Transaction {
 
-    public static final String REFERENCE_KEY = "reference";
-    public static final String AMOUNT_KEY = "amount";
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
@@ -31,33 +27,27 @@ public class Transaction {
     long id;
 
     @Column(name = "created_at")
-    LocalDateTime timestamp;
+    LocalDateTime timestamp = LocalDateTime.now();
 
-    @Column(name = "data")
+    @Column(name = "amount")
     @Getter
     @Setter
-    String data;
+    int amount = -1;
 
-    public Transaction(String jsonData) {
-        this.timestamp = LocalDateTime.now();
-        this.data = jsonData;
-    }
+    @Column(name = "reference")
+    @Getter
+    @Setter
+    String reference = "";
 
-    public Integer getAmount() {
-        JSONObject jsonData = new JSONObject(this.data);
-        if (jsonData.has("amount")) {
-            return jsonData.getInt("amount");
-        } else {
-            return -1;
+    public static Transaction of(Integer amount, String reference) {
+        var result = new Transaction();
+        if (amount != null) {
+            result.setAmount(amount);
         }
+        if (reference != null) {
+            result.setReference(reference);
+        }
+        return result;
     }
 
-    public String getReference() {
-        JSONObject jsonData = new JSONObject(this.data);
-        if (jsonData.has(REFERENCE_KEY)) {
-            return jsonData.getString(REFERENCE_KEY);
-        } else {
-            return "";
-        }
-    }
 }

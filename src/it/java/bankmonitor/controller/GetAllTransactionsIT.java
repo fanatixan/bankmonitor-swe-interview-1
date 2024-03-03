@@ -33,7 +33,7 @@ class GetAllTransactionsIT {
     @Test
     void shouldReturnAllTransactions() throws Exception {
         var jsonData = "{ \"reference\": \"foo\", \"amount\": 100 }";
-        when(transactionRepository.findAll()).thenReturn(List.of(new Transaction(jsonData)));
+        when(transactionRepository.findAll()).thenReturn(List.of(Transaction.of(100, "foo")));
 
         mockMvc.perform(get("/transactions"))
                 .andDo(print())
@@ -41,8 +41,7 @@ class GetAllTransactionsIT {
                 .andExpect(jsonPath("$.length()").value(1))
                 .andExpect(jsonPath("$[0].id").isNumber())
                 .andExpect(jsonPath("$[0].reference").value("foo"))
-                .andExpect(jsonPath("$[0].amount").value(100))
-                .andExpect(jsonPath("$[0].data").value(jsonData));
+                .andExpect(jsonPath("$[0].amount").value(100));
     }
 
 }

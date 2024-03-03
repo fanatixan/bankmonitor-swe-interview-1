@@ -4,6 +4,7 @@ import bankmonitor.model.Transaction;
 import bankmonitor.repository.TransactionRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,6 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Optional;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -52,15 +54,15 @@ class UpdateTransactionIT {
     @Test
     void shouldUpdateAmount() throws Exception {
         var id = 1L;
-        var oldData = "{ \"reference\": \"dog\", \"amount\": 13 }";
-        var oldTransaction = new Transaction(oldData);
+        var oldTransaction = Transaction.of(13, "dog");
         when(transactionRepository.findById(id)).thenReturn(Optional.of(oldTransaction));
 
         var updateData = "{ \"amount\": 24 }";
-        var newData = "{ \"reference\": \"dog\", \"amount\": 24 }";
 
-        var newTransaction = new Transaction(newData);
+        var newTransaction = Transaction.of(24, "dog");
         when(transactionRepository.save(any())).thenReturn(newTransaction);
+
+        var transactionCaptor = ArgumentCaptor.forClass(Transaction.class);
 
         mockMvc.perform(
                         put("/transactions/{id}", id)
@@ -71,25 +73,27 @@ class UpdateTransactionIT {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").isNumber())
                 .andExpect(jsonPath("$.reference").value("dog"))
-                .andExpect(jsonPath("$.amount").value(24))
-                .andExpect(jsonPath("$.data").value(newData));
+                .andExpect(jsonPath("$.amount").value(24));
 
-        verify(transactionRepository).save(any());
+        verify(transactionRepository).save(transactionCaptor.capture());
+        var savedTransaction = transactionCaptor.getValue();
+        assertThat(savedTransaction.getAmount()).isEqualTo(24);
+        assertThat(savedTransaction.getReference()).isEqualTo("dog");
     }
 
     @DisplayName("WHEN updating a transaction's reference THEN the transaction is updated")
     @Test
     void shouldUpdateReference() throws Exception {
         var id = 2L;
-        var oldData = "{ \"reference\": \"dog\", \"amount\": 13 }";
-        var oldTransaction = new Transaction(oldData);
+        var oldTransaction = Transaction.of(13, "dog");
         when(transactionRepository.findById(id)).thenReturn(Optional.of(oldTransaction));
 
         var updateData = "{ \"reference\": \"cat\" }";
-        var newData = "{ \"reference\": \"cat\", \"amount\": 13 }";
 
-        var newTransaction = new Transaction(newData);
+        var newTransaction = Transaction.of(13, "cat");
         when(transactionRepository.save(any())).thenReturn(newTransaction);
+
+        var transactionCaptor = ArgumentCaptor.forClass(Transaction.class);
 
         mockMvc.perform(
                         put("/transactions/{id}", id)
@@ -100,10 +104,12 @@ class UpdateTransactionIT {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").isNumber())
                 .andExpect(jsonPath("$.reference").value("cat"))
-                .andExpect(jsonPath("$.amount").value(13))
-                .andExpect(jsonPath("$.data").value(newData));
+                .andExpect(jsonPath("$.amount").value(13));
 
-        verify(transactionRepository).save(any());
+        verify(transactionRepository).save(transactionCaptor.capture());
+        var savedTransaction = transactionCaptor.getValue();
+        assertThat(savedTransaction.getAmount()).isEqualTo(13);
+        assertThat(savedTransaction.getReference()).isEqualTo("cat");
     }
 
 }

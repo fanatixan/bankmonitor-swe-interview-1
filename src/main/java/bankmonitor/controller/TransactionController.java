@@ -3,9 +3,9 @@ package bankmonitor.controller;
 import bankmonitor.model.Transaction;
 import bankmonitor.repository.TransactionRepository;
 import lombok.AccessLevel;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,34 +33,40 @@ class TransactionController {
     }
 
     @PostMapping("/transactions")
-    Transaction createTransaction(@RequestBody String jsonData) {
-        Transaction data = new Transaction(jsonData);
-        return transactionRepository.save(data);
+    Transaction createTransaction(@RequestBody TransactionRequest request) {
+        return transactionRepository.save(request.toTransaction());
     }
 
     @PutMapping("/transactions/{id}")
-    ResponseEntity<Transaction> updateTransaction(@PathVariable Long id, @RequestBody String update) {
-
-        JSONObject updateJson = new JSONObject(update);
-
+    ResponseEntity<Transaction> updateTransaction(@PathVariable long id, @RequestBody TransactionRequest update) {
         Optional<Transaction> data = transactionRepository.findById(id);
-        if (!data.isPresent()) {
+        if (data.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
         Transaction transaction = data.get();
-        JSONObject trdata = new JSONObject(transaction.getData());
 
-        if (updateJson.has(Transaction.AMOUNT_KEY)) {
-            trdata.put(Transaction.AMOUNT_KEY, updateJson.getInt(Transaction.AMOUNT_KEY));
+        if (update.getAmount() != null) {
+            transaction.setAmount(update.getAmount());
         }
 
-        if (updateJson.has(Transaction.REFERENCE_KEY)) {
-            trdata.put(Transaction.REFERENCE_KEY, updateJson.getString(Transaction.REFERENCE_KEY));
+        if (update.getReference() != null) {
+            transaction.setReference(update.getReference());
         }
-        transaction.setData(trdata.toString());
 
         Transaction updatedTransaction = transactionRepository.save(transaction);
         return ResponseEntity.ok(updatedTransaction);
     }
+
+    @Data
+    @FieldDefaults(level = AccessLevel.PRIVATE)
+    static final class TransactionRequest {
+        Integer amount;
+        String reference;
+
+        public Transaction toTransaction() {
+            return Transaction.of(amount, reference);
+        }
+    }
+
 }
