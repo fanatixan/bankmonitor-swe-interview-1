@@ -31,8 +31,8 @@ the new code should work with existing clients.
 
 - ✅ Configure gitignore
 - ✅ Add testing dependencies
-- ⚠ Add more unit tests
-- ⚠ Add API tests
+- 🛑 Add more unit tests
+- 🚧 Add API tests
 - ⚠ Add Checkstyle
 - ⚠ Add CI/CD
     - ⚠ Build
