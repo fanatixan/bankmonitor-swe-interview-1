@@ -34,12 +34,12 @@ the new code should work with existing clients.
 - 🛑 Add more unit tests
 - ✅ Add API tests
 - ✅ Add Checkstyle
-- ⚠ Add CI/CD
-    - ⚠ Build
-    - ⚠ Run tests
-    - ⚠ Run Checkstyle
-    - ⚠ Introduce Sonar scanning
-    - ⚠ Introduce Snyk scanning
+- ✅ Add CI/CD
+    - ✅ Build
+    - ✅ Run tests
+    - ✅ Run Checkstyle
+    - ✅ Introduce Sonar scanning
+    - ✅ Introduce Snyk scanning
 - ⚠ Fix reported warnings and errors
 - ⚠ Utilize Lombok
 - ⚠ Utilize Jackson
