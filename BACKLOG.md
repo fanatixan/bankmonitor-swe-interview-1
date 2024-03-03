@@ -33,7 +33,7 @@ the new code should work with existing clients.
 - ✅ Add testing dependencies
 - 🛑 Add more unit tests
 - ✅ Add API tests
-- ⚠ Add Checkstyle
+- ✅ Add Checkstyle
 - ⚠ Add CI/CD
     - ⚠ Build
     - ⚠ Run tests
