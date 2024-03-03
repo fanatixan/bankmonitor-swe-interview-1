@@ -30,7 +30,7 @@ the new code should work with existing clients.
 ## Subtasks
 
 - ✅ Configure gitignore
-- ⚠ Add testing dependencies
+- ✅ Add testing dependencies
 - ⚠ Add more unit tests
 - ⚠ Add API tests
 - ⚠ Add Checkstyle
