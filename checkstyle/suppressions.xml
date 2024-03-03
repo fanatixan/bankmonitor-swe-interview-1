@@ -8,4 +8,7 @@
     <suppress files="[\\/]src[\\/]test[\\/].*" id="FileLengthImplementation" />
     <suppress files="[\\/]src[\\/]it[\\/].*" id="FileLengthImplementation" />
     <suppress files="[\\/]src[\\/]main[\\/].*" id="FileLengthTest" />
+
+    <suppress files=".*Application\.java" checks="HideUtilityClassConstructor" />
+    <suppress files=".*Repository\.java" checks="InterfaceIsType" />
 </suppressions>
