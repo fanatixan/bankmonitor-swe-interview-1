@@ -38,7 +38,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         uses: snyk/actions/maven@master
         with:
-          args: --severity-threshold=high
+          args: --severity-threshold=high --fail-on=upgradable
 
   build-and-test:
     runs-on: ubuntu-latest
