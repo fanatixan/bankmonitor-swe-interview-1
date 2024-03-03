@@ -1,18 +1,24 @@
 package bankmonitor.model;
 
-import java.time.LocalDateTime;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 import org.json.JSONObject;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "transaction")
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Transaction {
 
     public static final String REFERENCE_KEY = "reference";
@@ -20,26 +26,21 @@ public class Transaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @Getter
+    @EqualsAndHashCode.Include
+    long id;
 
     @Column(name = "created_at")
-    private LocalDateTime timestamp;
+    LocalDateTime timestamp;
 
     @Column(name = "data")
-    private String data;
+    @Getter
+    @Setter
+    String data;
 
     public Transaction(String jsonData) {
         this.timestamp = LocalDateTime.now();
         this.data = jsonData;
-    }
-
-    public String getData() {
-        return this.data;
-    }
-
-    public Boolean setData(String data) {
-        this.data = data;
-        return true;
     }
 
     public Integer getAmount() {

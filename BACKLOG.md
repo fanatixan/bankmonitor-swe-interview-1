@@ -41,7 +41,7 @@ the new code should work with existing clients.
     - ✅ Introduce Sonar scanning
     - ✅ Introduce Snyk scanning
 - ✅ Fix reported warnings and errors
-- ⚠ Utilize Lombok
+- ✅ Utilize Lombok
 - ⚠ Utilize Jackson
 - ⚠ Separate endpoints
 - ⚠ Introduce hexagonal architecture

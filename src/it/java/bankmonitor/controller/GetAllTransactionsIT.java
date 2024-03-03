@@ -39,6 +39,7 @@ class GetAllTransactionsIT {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()").value(1))
+                .andExpect(jsonPath("$[0].id").isNumber())
                 .andExpect(jsonPath("$[0].reference").value("foo"))
                 .andExpect(jsonPath("$[0].amount").value(100))
                 .andExpect(jsonPath("$[0].data").value(jsonData));

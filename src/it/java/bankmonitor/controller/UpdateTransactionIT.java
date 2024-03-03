@@ -69,6 +69,7 @@ class UpdateTransactionIT {
                 )
                 .andDo(print())
                 .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").isNumber())
                 .andExpect(jsonPath("$.reference").value("dog"))
                 .andExpect(jsonPath("$.amount").value(24))
                 .andExpect(jsonPath("$.data").value(newData));
@@ -97,6 +98,7 @@ class UpdateTransactionIT {
                 )
                 .andDo(print())
                 .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").isNumber())
                 .andExpect(jsonPath("$.reference").value("cat"))
                 .andExpect(jsonPath("$.amount").value(13))
                 .andExpect(jsonPath("$.data").value(newData));

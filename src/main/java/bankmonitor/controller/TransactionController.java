@@ -2,6 +2,9 @@ package bankmonitor.controller;
 
 import bankmonitor.model.Transaction;
 import bankmonitor.repository.TransactionRepository;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,27 +21,25 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/")
-public class TransactionController {
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@RequiredArgsConstructor
+class TransactionController {
 
-    private final TransactionRepository transactionRepository;
-
-    public TransactionController(TransactionRepository transactionRepository) {
-        this.transactionRepository = transactionRepository;
-    }
+    TransactionRepository transactionRepository;
 
     @GetMapping("/transactions")
-    public List<Transaction> getAllTransactions() {
+    List<Transaction> getAllTransactions() {
         return transactionRepository.findAll();
     }
 
     @PostMapping("/transactions")
-    public Transaction createTransaction(@RequestBody String jsonData) {
+    Transaction createTransaction(@RequestBody String jsonData) {
         Transaction data = new Transaction(jsonData);
         return transactionRepository.save(data);
     }
 
     @PutMapping("/transactions/{id}")
-    public ResponseEntity<Transaction> updateTransaction(@PathVariable Long id, @RequestBody String update) {
+    ResponseEntity<Transaction> updateTransaction(@PathVariable Long id, @RequestBody String update) {
 
         JSONObject updateJson = new JSONObject(update);
 

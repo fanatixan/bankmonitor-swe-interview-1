@@ -62,6 +62,7 @@ class CreateTransactionsIT {
                 )
                 .andDo(print())
                 .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").isNumber())
                 .andExpect(jsonPath("$.reference").value("bar"))
                 .andExpect(jsonPath("$.amount").value(200))
                 .andExpect(jsonPath("$.data").value(jsonData));
