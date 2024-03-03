@@ -34,12 +34,6 @@ jobs:
     steps:
       - name: Checkout the code
         uses: actions/checkout@main
-      - name: Set up JDK
-        uses: actions/setup-java@v3
-        with:
-          java-version: ${{ env.JAVA_VERSION }}
-          distribution: ${{ env.JAVA_DISTRIBUTION }}
-          cache: 'maven'
       - name: Snyk
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
