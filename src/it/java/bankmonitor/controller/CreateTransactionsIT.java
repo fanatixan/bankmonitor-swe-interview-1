@@ -81,7 +81,7 @@ class CreateTransactionsIT {
         verify(transactionRepository).save(transactionCaptor.capture());
         var savedTransaction = transactionCaptor.getValue();
         assertThat(savedTransaction.getAmount()).isEqualTo(200);
-        assertThat(savedTransaction.getReference()).isEqualTo("");
+        assertThat(savedTransaction.getReference()).isEmpty();
     }
 
     @DisplayName("WHEN creating a transaction with reference only THEN the saved transaction is returned")
@@ -133,7 +133,7 @@ class CreateTransactionsIT {
         verify(transactionRepository).save(transactionCaptor.capture());
         var savedTransaction = transactionCaptor.getValue();
         assertThat(savedTransaction.getAmount()).isEqualTo(-1);
-        assertThat(savedTransaction.getReference()).isEqualTo("");
+        assertThat(savedTransaction.getReference()).isEmpty();
     }
 
 }
