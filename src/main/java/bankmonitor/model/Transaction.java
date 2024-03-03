@@ -16,6 +16,7 @@ import org.json.JSONObject;
 public class Transaction {
 
     public static final String REFERENCE_KEY = "reference";
+    public static final String AMOUNT_KEY = "amount";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

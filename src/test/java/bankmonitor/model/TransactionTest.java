@@ -4,13 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-public class TransactionTest {
+class TransactionTest {
 
-  @Test
-  void test_getData() {
-    Transaction tr = new Transaction("{ \"reference\": \"foo\", \"amount\": 100}");
+    @Test
+    void test_getData() {
+        Transaction tr = new Transaction("{ \"reference\": \"foo\", \"amount\": 100}");
 
-    assertEquals(tr.getReference(), "foo");
-    assertEquals(tr.getAmount(), 100);
-  }
+        assertEquals("foo", tr.getReference());
+        assertEquals(100, tr.getAmount());
+    }
 }

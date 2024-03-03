@@ -1,47 +1,43 @@
 package bankmonitor.controller;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import bankmonitor.model.Transaction;
+import bankmonitor.repository.TransactionRepository;
+import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import org.json.JSONObject;
+import java.util.List;
+import java.util.Optional;
 
-import bankmonitor.model.Transaction;
-import bankmonitor.repository.TransactionRepository;
-
-@Controller
+@RestController
 @RequestMapping("/")
 public class TransactionController {
 
-    @Autowired
-    private TransactionRepository transactionRepository;
+    private final TransactionRepository transactionRepository;
+
+    public TransactionController(TransactionRepository transactionRepository) {
+        this.transactionRepository = transactionRepository;
+    }
 
     @GetMapping("/transactions")
-    @ResponseBody
     public List<Transaction> getAllTransactions() {
         return transactionRepository.findAll();
     }
 
     @PostMapping("/transactions")
-    @ResponseBody
     public Transaction createTransaction(@RequestBody String jsonData) {
         Transaction data = new Transaction(jsonData);
         return transactionRepository.save(data);
     }
 
     @PutMapping("/transactions/{id}")
-    @ResponseBody
     public ResponseEntity<Transaction> updateTransaction(@PathVariable Long id, @RequestBody String update) {
 
         JSONObject updateJson = new JSONObject(update);
@@ -54,8 +50,8 @@ public class TransactionController {
         Transaction transaction = data.get();
         JSONObject trdata = new JSONObject(transaction.getData());
 
-        if (updateJson.has("amount")) {
-            trdata.put("amount", updateJson.getInt("amount"));
+        if (updateJson.has(Transaction.AMOUNT_KEY)) {
+            trdata.put(Transaction.AMOUNT_KEY, updateJson.getInt(Transaction.AMOUNT_KEY));
         }
 
         if (updateJson.has(Transaction.REFERENCE_KEY)) {
