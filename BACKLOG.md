@@ -40,7 +40,7 @@ the new code should work with existing clients.
     - ✅ Run Checkstyle
     - ✅ Introduce Sonar scanning
     - ✅ Introduce Snyk scanning
-- 🚧 Fix reported warnings and errors
+- ✅ Fix reported warnings and errors
 - ⚠ Utilize Lombok
 - ⚠ Utilize Jackson
 - ⚠ Separate endpoints
