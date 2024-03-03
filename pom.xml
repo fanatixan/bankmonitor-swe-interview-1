@@ -15,6 +15,11 @@
     <description>Bankmonitor Senior SWE Interview</description>
     <properties>
         <java.version>17</java.version>
+
+        <version.lombok>1.18.28</version.lombok>
+        <version.json>20231013</version.json>
+        <version.h2>2.1.214</version.h2>
+
         <sonar.organization>fanatixan</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
@@ -51,20 +56,20 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.28</version>
+            <version>${version.lombok}</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20231013</version>
+            <version>${version.json}</version>
         </dependency>
 
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>2.1.214</version>
+            <version>${version.h2}</version>
         </dependency>
 
         <dependency>
