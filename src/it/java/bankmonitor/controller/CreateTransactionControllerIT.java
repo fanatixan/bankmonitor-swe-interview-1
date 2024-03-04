@@ -21,10 +21,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@DisplayName("GIVEN transaction API")
+@DisplayName("GIVEN create transaction API endpoint")
 @SpringBootTest
 @AutoConfigureMockMvc
-class CreateTransactionsIT {
+class CreateTransactionControllerIT {
 
     @Autowired
     MockMvc mockMvc;
@@ -32,9 +32,9 @@ class CreateTransactionsIT {
     @MockBean
     TransactionRepository transactionRepository;
 
-    @DisplayName("WHEN creating a transaction with amount and reference THEN the saved transaction is returned")
+    @DisplayName("WHEN calling with amount and reference THEN the saved transaction is returned")
     @Test
-    void whenPassingAmountAndReferenceThenShouldReturnSavedTransaction() throws Exception {
+    void whenCallingWithAmountAndReferenceThenShouldReturnSavedTransaction() throws Exception {
         var jsonData = "{ \"reference\": \"bar\", \"amount\": 200 }";
         var transaction = Transaction.of(200, "bar");
         when(transactionRepository.save(any())).thenReturn(transaction);
@@ -58,9 +58,9 @@ class CreateTransactionsIT {
         assertThat(savedTransaction.getReference()).isEqualTo("bar");
     }
 
-    @DisplayName("WHEN creating a transaction with amount only THEN the saved transaction is returned")
+    @DisplayName("WHEN calling with amount only THEN the saved transaction is returned")
     @Test
-    void whenPassingAmountOnlyThenShouldReturnSavedTransaction() throws Exception {
+    void whenCallingWithAmountOnlyThenShouldReturnSavedTransaction() throws Exception {
         var jsonData = "{ \"amount\": 200 }";
         var transaction = Transaction.of(200, "");
         when(transactionRepository.save(any())).thenReturn(transaction);
@@ -84,9 +84,9 @@ class CreateTransactionsIT {
         assertThat(savedTransaction.getReference()).isEmpty();
     }
 
-    @DisplayName("WHEN creating a transaction with reference only THEN the saved transaction is returned")
+    @DisplayName("WHEN calling with reference only THEN the saved transaction is returned")
     @Test
-    void whenPassingReferenceOnlyThenShouldReturnSavedTransaction() throws Exception {
+    void whenCallingWithReferenceOnlyThenShouldReturnSavedTransaction() throws Exception {
         var jsonData = "{ \"reference\": \"bar\" }";
         var transaction = Transaction.of(-1, "bar");
         when(transactionRepository.save(any())).thenReturn(transaction);
@@ -110,9 +110,9 @@ class CreateTransactionsIT {
         assertThat(savedTransaction.getReference()).isEqualTo("bar");
     }
 
-    @DisplayName("WHEN creating a transaction with no amount or reference THEN the saved transaction is returned")
+    @DisplayName("WHEN calling with no amount or reference THEN the saved transaction is returned")
     @Test
-    void whenPassingNoAmountOrReferenceThenShouldReturnSavedTransaction() throws Exception {
+    void whenCallingWithNoAmountOrReferenceThenShouldReturnSavedTransaction() throws Exception {
         var jsonData = "{ }";
         var transaction = Transaction.of(-1, "");
         when(transactionRepository.save(any())).thenReturn(transaction);

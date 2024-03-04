@@ -43,7 +43,7 @@ the new code should work with existing clients.
 - ✅ Fix reported warnings and errors
 - ✅ Utilize Lombok
 - ✅ Utilize Jackson
-- ⚠ Separate endpoints
+- ✅ Separate endpoints
 - ⚠ Introduce hexagonal architecture
     - ⚠ Extract business logic from controller
     - ⚠ Extract database adapter

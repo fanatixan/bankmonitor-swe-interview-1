@@ -18,10 +18,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@DisplayName("GIVEN transaction API WHEN getting all transactions")
+@DisplayName("GIVEN get all transactions API endpoint")
 @SpringBootTest
 @AutoConfigureMockMvc
-class GetAllTransactionsIT {
+class GetAllTransactionsControllerIT {
 
     @Autowired
     MockMvc mockMvc;
@@ -29,7 +29,7 @@ class GetAllTransactionsIT {
     @MockBean
     TransactionRepository transactionRepository;
 
-    @DisplayName("THEN all transactions in the system are returned")
+    @DisplayName("WHEN calling it THEN all transactions in the system are returned")
     @Test
     void shouldReturnAllTransactions() throws Exception {
         var jsonData = "{ \"reference\": \"foo\", \"amount\": 100 }";

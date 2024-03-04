@@ -23,10 +23,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@DisplayName("GIVEN transaction API")
+@DisplayName("GIVEN update transaction API endpoint")
 @SpringBootTest
 @AutoConfigureMockMvc
-class UpdateTransactionIT {
+class UpdateTransactionControllerIT {
 
     @Autowired
     MockMvc mockMvc;
@@ -34,7 +34,7 @@ class UpdateTransactionIT {
     @MockBean
     TransactionRepository transactionRepository;
 
-    @DisplayName("WHEN updating non-existing transaction THEN bad request is returned")
+    @DisplayName("WHEN calling with non-existing id THEN bad request is returned")
     @Test
     void whenUpdatingNonExistingTransactionThenShouldReturnBadRequest() throws Exception {
         var id = 42L;
@@ -50,7 +50,7 @@ class UpdateTransactionIT {
                 .andExpect(status().isBadRequest());
     }
 
-    @DisplayName("WHEN updating a transaction's amount THEN the transaction is updated")
+    @DisplayName("WHEN calling with amount THEN the transaction is updated")
     @Test
     void shouldUpdateAmount() throws Exception {
         var id = 1L;
@@ -81,7 +81,7 @@ class UpdateTransactionIT {
         assertThat(savedTransaction.getReference()).isEqualTo("dog");
     }
 
-    @DisplayName("WHEN updating a transaction's reference THEN the transaction is updated")
+    @DisplayName("WHEN calling with reference THEN the transaction is updated")
     @Test
     void shouldUpdateReference() throws Exception {
         var id = 2L;
