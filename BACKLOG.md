@@ -44,8 +44,8 @@ the new code should work with existing clients.
 - ✅ Utilize Lombok
 - ✅ Utilize Jackson
 - ✅ Separate endpoints
-- ⚠ Introduce hexagonal architecture
-    - ⚠ Extract business logic from controller
+- 🚧 Introduce hexagonal architecture
+    - 🚧 Extract business logic from controller
     - ⚠ Extract database adapter
     - ⚠ Separate data classes for different "layers"
 - 🚧 Optimize DB performance

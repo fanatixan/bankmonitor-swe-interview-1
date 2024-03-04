@@ -1,7 +1,7 @@
 package bankmonitor.controller;
 
 import bankmonitor.model.Transaction;
-import bankmonitor.repository.TransactionRepository;
+import bankmonitor.service.GetAllTransactionsService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +27,12 @@ class GetAllTransactionsControllerIT {
     MockMvc mockMvc;
 
     @MockBean
-    TransactionRepository transactionRepository;
+    GetAllTransactionsService service;
 
     @DisplayName("WHEN calling it THEN all transactions in the system are returned")
     @Test
     void shouldReturnAllTransactions() throws Exception {
-        var jsonData = "{ \"reference\": \"foo\", \"amount\": 100 }";
-        when(transactionRepository.findAll()).thenReturn(List.of(Transaction.of(100, "foo")));
+        when(service.findAll()).thenReturn(List.of(Transaction.of(100, "foo")));
 
         mockMvc.perform(get("/transactions"))
                 .andDo(print())

@@ -1,7 +1,7 @@
 package bankmonitor.controller;
 
 import bankmonitor.model.Transaction;
-import bankmonitor.repository.TransactionRepository;
+import bankmonitor.service.GetAllTransactionsService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -17,11 +17,11 @@ import java.util.List;
 @RequiredArgsConstructor
 class GetAllTransactionsController {
 
-    TransactionRepository transactionRepository;
+    GetAllTransactionsService service;
 
     @GetMapping
     List<Transaction> getAllTransactions() {
-        return transactionRepository.findAll();
+        return service.findAll();
     }
 
 }
