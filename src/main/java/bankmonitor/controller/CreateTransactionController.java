@@ -2,7 +2,7 @@ package bankmonitor.controller;
 
 import bankmonitor.controller.request.TransactionRequest;
 import bankmonitor.model.Transaction;
-import bankmonitor.repository.TransactionRepository;
+import bankmonitor.service.CreateTransactionService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 class CreateTransactionController {
 
-    TransactionRepository transactionRepository;
+    CreateTransactionService service;
 
     @PostMapping("/transactions")
     Transaction createTransaction(@RequestBody TransactionRequest request) {
-        return transactionRepository.save(request.toTransaction());
+        return service.createTransaction(request.getAmount(), request.getReference());
     }
 
 }
