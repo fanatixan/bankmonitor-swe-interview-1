@@ -6,6 +6,7 @@ import bankmonitor.repository.TransactionRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
+@Slf4j
 class UpdateTransactionServiceImpl implements UpdateTransactionService {
 
     TransactionRepository transactionRepository;
@@ -22,11 +24,14 @@ class UpdateTransactionServiceImpl implements UpdateTransactionService {
         Transaction transaction = transactionRepository.findById(id)
                 .orElseThrow(() -> new ApiException(String.format("Transaction not found with id '%d'", id)));
 
+        log.info("Updating transaction with id '{}'", id);
         if (amount != null) {
+            log.debug("New amount: {}", amount);
             transaction.setAmount(amount);
         }
 
         if (reference != null) {
+            log.debug("New reference: '{}'", reference);
             transaction.setReference(reference);
         }
 

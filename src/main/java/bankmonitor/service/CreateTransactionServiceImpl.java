@@ -5,6 +5,7 @@ import bankmonitor.repository.TransactionRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,12 +13,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
+@Slf4j
 class CreateTransactionServiceImpl implements CreateTransactionService {
 
     TransactionRepository transactionRepository;
 
     @Override
     public Transaction createTransaction(Integer amount, String reference) {
+        log.info("Creating new transaction for reference '{}'", reference);
+        log.debug("New amount: {}", amount);
         var transaction = Transaction.of(amount, reference);
         return transactionRepository.save(transaction);
     }
