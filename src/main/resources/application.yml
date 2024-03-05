@@ -2,21 +2,37 @@ springdoc:
   api-docs:
     path: /openapi
 server:
-  port: 3000
+  port: ${SERVER_PORT:3000}
 
 spring:
   datasource:
     driverClassName: org.h2.Driver
-    url: jdbc:h2:mem:myDb;DB_CLOSE_DELAY=-1
-    username: postgres
-    password: postgres
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
   sql:
     init:
       mode: always
   jpa:
-    show-sql: true
+    open-in-view: false
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
+  cache:
+    cache-names:
+      - transactions
+
+# to log SQL statements, uncomment the following lines
+#logging:
+#  level:
+#    org.hibernate.SQL: debug
+#    org.hibernate.type.descriptor.sql.BasicBinder: trace
+
+---
+
+DB_URL: jdbc:h2:mem:myDb;DB_CLOSE_DELAY=-1
+DB_USER: postgres
+DB_PASSWORD: postgres

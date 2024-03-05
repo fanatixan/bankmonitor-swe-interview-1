@@ -31,7 +31,7 @@ the new code should work with existing clients.
 
 - ✅ Configure gitignore
 - ✅ Add testing dependencies
-- 🛑 Add more unit tests
+- ✅ Add more unit tests
 - ✅ Add API tests
 - ✅ Add Checkstyle
 - ✅ Add CI/CD
@@ -43,16 +43,16 @@ the new code should work with existing clients.
 - ✅ Fix reported warnings and errors
 - ✅ Utilize Lombok
 - ✅ Utilize Jackson
-- ⚠ Separate endpoints
-- ⚠ Introduce hexagonal architecture
-    - ⚠ Extract business logic from controller
-    - ⚠ Extract database adapter
-    - ⚠ Separate data classes for different "layers"
-- 🚧 Optimize DB performance
-- ⚠ Fix DB config
-- ⚠ Optimize logging
-- ⚠ Externalize configuration
-- ⚠ Introduce caching
+- ✅ Separate endpoints
+- ✅ Introduce hexagonal architecture
+    - ✅ Extract business logic from controller
+    - ✅ Extract database adapter
+    - ✅ Separate data classes for different "layers"
+- ✅ Optimize DB performance
+- ✅ Fix DB config
+- ✅ Optimize logging
+- ✅ Externalize configuration
+- ✅ Introduce caching
 
 ## Further Suggestions
 
@@ -61,3 +61,10 @@ the new code should work with existing clients.
 - Add automatic dependency bumping to CI/CD
 - Add Dockerfile and automatic image building to CI/CD
 - Move to continuous deployment
+- Add request validation
+- Migrate from H2 to Postgres in TestContainers
+- Introduce filtering and/or pagination to the get all transactions endpoint
+- Add security
+- Add proper consumer-driven contract tests (for example, Pact)
+- Configure monitoring (for example, Micrometer)
+- Configure distributed tracing (Spring Cloud Sleuth, Zipkin)

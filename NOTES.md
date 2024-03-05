@@ -13,3 +13,10 @@
   using Jackson's `@JsonAnySetter` and `@JsonAnyGetter`.
 - Both `amount` and `reference` seems to be a mandatory field, but I refactored in such a way that they are optional in the create and update endpoints to maintain
   backward compatibility. I ensured this behavior with additional API tests for create.
+- Since we're only looking up transactions by ID at the moment, there is no point to add more indices to the DB. In the future, further indexing should be considered.
+- For the application to be runnable, I didn't fully externalize the configuration. In a real-life situation, H2 should have been moved to be a test-scoped
+  dependency, and the JDBC driver should have been a Postgres driver.
+- I considered adding validation, but even `data.sql` contains data that makes hard to figure out validation rules. This needs to be discovered with the PO.
+- Most probably caching all transactions is not the best idea. If we assume that we frequently retrieve the transaction list, but rarely update/create them,
+  then it can be justified.
+- In a microservices environment in-memory caching is suboptimal. Therefore, in a production environment I'd configure a Redis or Hazelcast-based distributed cache.
