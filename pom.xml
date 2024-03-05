@@ -16,7 +16,7 @@
     <properties>
         <java.version>17</java.version>
 
-        <version.lombok>1.18.28</version.lombok>
+        <version.lombok>1.18.30</version.lombok>
         <version.json>20231013</version.json>
         <version.h2>2.2.224</version.h2>
 
