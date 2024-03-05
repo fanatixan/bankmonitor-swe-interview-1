@@ -1,6 +1,7 @@
 package bankmonitor.controller;
 
-import bankmonitor.model.Transaction;
+import bankmonitor.controller.response.TransactionResponse;
+import bankmonitor.controller.response.mapper.TransactionResponseMapper;
 import bankmonitor.service.GetAllTransactionsService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -18,10 +19,11 @@ import java.util.List;
 class GetAllTransactionsController {
 
     GetAllTransactionsService service;
+    TransactionResponseMapper mapper;
 
     @GetMapping
-    List<Transaction> getAllTransactions() {
-        return service.findAll();
+    List<TransactionResponse> getAllTransactions() {
+        return mapper.toResponse(service.findAll());
     }
 
 }

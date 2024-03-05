@@ -1,7 +1,8 @@
 package bankmonitor.controller;
 
 import bankmonitor.controller.request.TransactionRequest;
-import bankmonitor.model.Transaction;
+import bankmonitor.controller.response.TransactionResponse;
+import bankmonitor.controller.response.mapper.TransactionResponseMapper;
 import bankmonitor.service.UpdateTransactionService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -19,10 +20,17 @@ import org.springframework.web.bind.annotation.RestController;
 class UpdateTransactionController {
 
     UpdateTransactionService updateTransactionService;
+    TransactionResponseMapper mapper;
 
     @PutMapping
-    Transaction updateTransaction(@PathVariable long id, @RequestBody TransactionRequest update) {
-        return updateTransactionService.updateTransaction(id, update.getAmount(), update.getReference());
+    TransactionResponse updateTransaction(@PathVariable long id, @RequestBody TransactionRequest update) {
+        return mapper.toResponse(
+                updateTransactionService.updateTransaction(
+                        id,
+                        update.getAmount(),
+                        update.getReference()
+                )
+        );
     }
 
 }
