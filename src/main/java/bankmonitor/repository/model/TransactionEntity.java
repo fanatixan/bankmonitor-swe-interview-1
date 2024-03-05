@@ -25,7 +25,7 @@ public class TransactionEntity {
     @EqualsAndHashCode.Include
     Long id;
 
-    @Column(name = "created_at")
+    @Column(name = "created_at", updatable = false)
     LocalDateTime timestamp = LocalDateTime.now();
 
     @Column(name = "amount")
