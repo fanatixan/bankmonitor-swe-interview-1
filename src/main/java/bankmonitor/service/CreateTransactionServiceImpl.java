@@ -6,6 +6,7 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +19,7 @@ class CreateTransactionServiceImpl implements CreateTransactionService {
 
     TransactionRepository transactionRepository;
 
+    @CacheEvict(cacheNames = "transactions", allEntries = true)
     @Override
     public Transaction createTransaction(Integer amount, String reference) {
         log.info("Creating new transaction for reference '{}'", reference);

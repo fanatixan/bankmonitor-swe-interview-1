@@ -52,7 +52,7 @@ the new code should work with existing clients.
 - ✅ Fix DB config
 - ✅ Optimize logging
 - ✅ Externalize configuration
-- ⚠ Introduce caching
+- ✅ Introduce caching
 
 ## Further Suggestions
 

@@ -7,6 +7,7 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +20,7 @@ class UpdateTransactionServiceImpl implements UpdateTransactionService {
 
     TransactionRepository transactionRepository;
 
+    @CacheEvict(cacheNames = "transactions", allEntries = true)
     @Override
     public Transaction updateTransaction(long id, Integer amount, String reference) {
         Transaction transaction = transactionRepository.findById(id)

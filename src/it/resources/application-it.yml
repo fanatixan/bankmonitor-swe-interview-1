@@ -1,3 +1,7 @@
 DB_URL: jdbc:h2:mem:myDb;DB_CLOSE_DELAY=-1
 DB_USER: postgres
 DB_PASSWORD: postgres
+
+spring:
+  cache:
+    type: none

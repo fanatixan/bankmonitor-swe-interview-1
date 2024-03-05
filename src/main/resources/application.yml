@@ -20,6 +20,9 @@ spring:
         format_sql: true
     hibernate:
       ddl-auto: validate
+  cache:
+    cache-names:
+      - transactions
 
 # to log SQL statements, uncomment the following lines
 #logging:
