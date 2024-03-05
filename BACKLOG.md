@@ -45,7 +45,7 @@ the new code should work with existing clients.
 - ✅ Utilize Jackson
 - ✅ Separate endpoints
 - 🚧 Introduce hexagonal architecture
-    - 🚧 Extract business logic from controller
+    - ✅ Extract business logic from controller
     - ⚠ Extract database adapter
     - ⚠ Separate data classes for different "layers"
 - 🚧 Optimize DB performance
