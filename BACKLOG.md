@@ -51,7 +51,7 @@ the new code should work with existing clients.
 - ✅ Optimize DB performance
 - ✅ Fix DB config
 - ✅ Optimize logging
-- ⚠ Externalize configuration
+- ✅ Externalize configuration
 - ⚠ Introduce caching
 
 ## Further Suggestions

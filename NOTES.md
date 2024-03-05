@@ -14,3 +14,5 @@
 - Both `amount` and `reference` seems to be a mandatory field, but I refactored in such a way that they are optional in the create and update endpoints to maintain
   backward compatibility. I ensured this behavior with additional API tests for create.
 - Since we're only looking up transactions by ID at the moment, there is no point to add more indices to the DB. In the future, further indexing should be considered.
+- For the application to be runnable, I didn't fully externalize the configuration. In a real-life situation, H2 should have been moved to be a test-scoped
+  dependency, and the JDBC driver should have been a Postgres driver.

@@ -1,17 +1,16 @@
 package bankmonitor.repository.model.mapper;
 
+import bankmonitor.IntegrationTestContext;
 import bankmonitor.model.Transaction;
 import bankmonitor.repository.model.TransactionEntity;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("Transaction model-entity mapping")
-@SpringBootTest
-class TransactionEntityMapperTest {
+class TransactionEntityMapperTest extends IntegrationTestContext {
 
     @Autowired
     TransactionEntityMapper mapper;
