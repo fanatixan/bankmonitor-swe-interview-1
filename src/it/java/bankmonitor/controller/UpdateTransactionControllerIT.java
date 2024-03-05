@@ -54,7 +54,11 @@ class UpdateTransactionControllerIT extends IntegrationTestContext {
         var id = 1L;
         Integer amount = 24;
         String reference = null;
-        var updateData = "{ \"amount\": 24 }";
+        var updateData = """
+                {
+                  "amount": 24
+                }
+                """;
 
         mockMvc.perform(
                         put("/transactions/{id}", id)
@@ -73,7 +77,11 @@ class UpdateTransactionControllerIT extends IntegrationTestContext {
         var id = 1L;
         Integer amount = null;
         String reference = "cat";
-        var updateData = "{ \"reference\": \"cat\" }";
+        var updateData = """
+                {
+                  "reference": "cat"
+                }
+                """;
 
         mockMvc.perform(
                         put("/transactions/{id}", id)

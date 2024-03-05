@@ -31,7 +31,12 @@ class CreateTransactionControllerIT extends IntegrationTestContext {
     @DisplayName("WHEN calling with amount and reference THEN the saved transaction is returned")
     @Test
     void whenCallingWithAmountAndReferenceThenShouldReturnSavedTransaction() throws Exception {
-        var jsonData = "{ \"reference\": \"bar\", \"amount\": 200 }";
+        var jsonData = """
+                {
+                  "reference": "bar",
+                  "amount": 200
+                }
+                """;
         var transaction = Transaction.of(200, "bar");
         when(service.createTransaction(200, "bar")).thenReturn(transaction);
 
@@ -52,7 +57,11 @@ class CreateTransactionControllerIT extends IntegrationTestContext {
     @DisplayName("WHEN calling with amount only THEN the saved transaction is returned")
     @Test
     void whenCallingWithAmountOnlyThenShouldReturnSavedTransaction() throws Exception {
-        var jsonData = "{ \"amount\": 200 }";
+        var jsonData = """
+                {
+                  "amount": 200
+                }
+                 """;
         var transaction = Transaction.of(200, "");
         when(service.createTransaction(200, null)).thenReturn(transaction);
 
@@ -73,7 +82,11 @@ class CreateTransactionControllerIT extends IntegrationTestContext {
     @DisplayName("WHEN calling with reference only THEN the saved transaction is returned")
     @Test
     void whenCallingWithReferenceOnlyThenShouldReturnSavedTransaction() throws Exception {
-        var jsonData = "{ \"reference\": \"bar\" }";
+        var jsonData = """
+                {
+                  "reference": "bar"
+                }
+                """;
         var transaction = Transaction.of(-1, "bar");
         when(service.createTransaction(null, "bar")).thenReturn(transaction);
 
@@ -94,7 +107,7 @@ class CreateTransactionControllerIT extends IntegrationTestContext {
     @DisplayName("WHEN calling with no amount or reference THEN the saved transaction is returned")
     @Test
     void whenCallingWithNoAmountOrReferenceThenShouldReturnSavedTransaction() throws Exception {
-        var jsonData = "{ }";
+        var jsonData = "{}";
         var transaction = Transaction.of(-1, "");
         when(service.createTransaction(null, null)).thenReturn(transaction);
 
