@@ -61,3 +61,10 @@ the new code should work with existing clients.
 - Add automatic dependency bumping to CI/CD
 - Add Dockerfile and automatic image building to CI/CD
 - Move to continuous deployment
+- Add request validation
+- Migrate from H2 to Postgres in TestContainers
+- Introduce filtering and/or pagination to the get all transactions endpoint
+- Add security
+- Add proper consumer-driven contract tests (for example, Pact)
+- Configure monitoring (for example, Micrometer)
+- Configure distributed tracing (Spring Cloud Sleuth, Zipkin)
