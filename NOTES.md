@@ -13,3 +13,4 @@
   using Jackson's `@JsonAnySetter` and `@JsonAnyGetter`.
 - Both `amount` and `reference` seems to be a mandatory field, but I refactored in such a way that they are optional in the create and update endpoints to maintain
   backward compatibility. I ensured this behavior with additional API tests for create.
+- Since we're only looking up transactions by ID at the moment, there is no point to add more indices to the DB. In the future, further indexing should be considered.

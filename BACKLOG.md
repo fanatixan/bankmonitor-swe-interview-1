@@ -48,7 +48,7 @@ the new code should work with existing clients.
     - ✅ Extract business logic from controller
     - ✅ Extract database adapter
     - ✅ Separate data classes for different "layers"
-- 🚧 Optimize DB performance
+- ✅ Optimize DB performance
 - ⚠ Fix DB config
 - ⚠ Optimize logging
 - ⚠ Externalize configuration

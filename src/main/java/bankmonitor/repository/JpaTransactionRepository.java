@@ -6,11 +6,13 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository
+@Transactional
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
 class JpaTransactionRepository implements TransactionRepository {
@@ -18,11 +20,13 @@ class JpaTransactionRepository implements TransactionRepository {
     TransactionEntityRepository repository;
     TransactionEntityMapper mapper;
 
+    @Transactional(readOnly = true)
     @Override
     public List<Transaction> findAll() {
         return mapper.toDomain(repository.findAll());
     }
 
+    @Transactional(readOnly = true)
     @Override
     public Optional<Transaction> findById(long id) {
         return repository.findById(id)
