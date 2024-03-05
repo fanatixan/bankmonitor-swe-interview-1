@@ -95,7 +95,7 @@ class UpdateTransactionServiceImplTest {
 
     static abstract class TransactionRepositoryStub implements TransactionRepository {
         @Override
-        public <S extends Transaction> S save(S entity) {
+        public Transaction save(Transaction entity) {
             return entity;
         }
     }

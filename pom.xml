@@ -17,6 +17,7 @@
         <java.version>17</java.version>
 
         <version.lombok>1.18.28</version.lombok>
+        <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
         <version.json>20231013</version.json>
         <version.h2>2.2.224</version.h2>
 
@@ -58,6 +59,18 @@
             <artifactId>lombok</artifactId>
             <version>${version.lombok}</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${org.mapstruct.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>${org.mapstruct.version}</version>
         </dependency>
 
         <dependency>

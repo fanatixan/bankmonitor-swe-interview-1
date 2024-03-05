@@ -1,11 +1,16 @@
 package bankmonitor.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
 import bankmonitor.model.Transaction;
 
-@Repository
-public interface TransactionRepository extends JpaRepository<Transaction, Long> {
+import java.util.List;
+import java.util.Optional;
+
+public interface TransactionRepository {
+
+    List<Transaction> findAll();
+
+    Optional<Transaction> findById(long id);
+
+    Transaction save(Transaction transaction);
 
 }
