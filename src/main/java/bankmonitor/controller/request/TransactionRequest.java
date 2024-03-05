@@ -1,6 +1,5 @@
 package bankmonitor.controller.request;
 
-import bankmonitor.model.Transaction;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
@@ -10,8 +9,4 @@ import lombok.experimental.FieldDefaults;
 public final class TransactionRequest {
     Integer amount;
     String reference;
-
-    public Transaction toTransaction() {
-        return Transaction.of(amount, reference);
-    }
 }
