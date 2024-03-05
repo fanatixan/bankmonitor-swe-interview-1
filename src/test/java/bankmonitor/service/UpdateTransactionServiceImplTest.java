@@ -93,6 +93,28 @@ class UpdateTransactionServiceImplTest {
         verify(transactionRepository).save(any());
     }
 
+    @DisplayName("GIVEN existing transaction ID and reference WHEN updating transaction THEN only reference is updated")
+    @Test
+    void givenExistingIdAndReferenceWhenUpdatingTransactionThenOnlyReferenceIsUpdated() {
+        // given
+        long id = 1;
+        Integer originalAmount = 2;
+        String originalReference = "baz";
+        var originalTransaction = Transaction.of(originalAmount, originalReference);
+        when(transactionRepository.findById(id)).thenReturn(Optional.of(originalTransaction));
+
+        Integer newAmount = null;
+        String newReference = "noidea";
+
+        // when
+        Transaction updatedTransaction = service.updateTransaction(id, newAmount, newReference);
+
+        // then
+        assertThat(updatedTransaction.getAmount()).isEqualTo(originalAmount);
+        assertThat(updatedTransaction.getReference()).isEqualTo(newReference);
+        verify(transactionRepository).save(any());
+    }
+
     static abstract class TransactionRepositoryStub implements TransactionRepository {
         @Override
         public Transaction save(Transaction entity) {
