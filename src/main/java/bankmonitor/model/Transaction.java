@@ -13,11 +13,11 @@ public class Transaction {
 
     @Setter(AccessLevel.PRIVATE)
     @EqualsAndHashCode.Include
-    long id;
+    Long id;
     int amount = -1;
     String reference = "";
 
-    public static Transaction of(long id, Integer amount, String reference) {
+    public static Transaction of(Long id, Integer amount, String reference) {
         var result = new Transaction();
         result.setId(id);
         if (amount != null) {
@@ -30,7 +30,7 @@ public class Transaction {
     }
 
     public static Transaction of(Integer amount, String reference) {
-        return of(0, amount, reference);
+        return of(null, amount, reference);
     }
 
 }

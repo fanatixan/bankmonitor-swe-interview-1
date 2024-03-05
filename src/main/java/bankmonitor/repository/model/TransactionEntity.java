@@ -23,7 +23,7 @@ public class TransactionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    long id;
+    Long id;
 
     @Column(name = "created_at")
     LocalDateTime timestamp = LocalDateTime.now();
