@@ -16,3 +16,4 @@
 - Since we're only looking up transactions by ID at the moment, there is no point to add more indices to the DB. In the future, further indexing should be considered.
 - For the application to be runnable, I didn't fully externalize the configuration. In a real-life situation, H2 should have been moved to be a test-scoped
   dependency, and the JDBC driver should have been a Postgres driver.
+- I considered adding validation, but even `data.sql` contains data that makes hard to figure out validation rules. This needs to be discovered with the PO.
