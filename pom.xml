@@ -19,7 +19,7 @@
         <version.lombok>1.18.30</version.lombok>
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
         <version.json>20231013</version.json>
-        <version.h2>2.2.224</version.h2>
+        <version.h2>2.3.230</version.h2>
 
         <sonar.organization>fanatixan</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
